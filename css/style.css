@@ -953,41 +953,54 @@ body {
 }
 
 .form__check {
-  position: relative;
   cursor: pointer;
 }
 
-.form__check::after {
-  content: "";
+.form__checking {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  z-index: -1;
   position: absolute;
+}
+
+.form__checkpoint {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--color-black);
+  border: 1px solid var(--color-white);
+  box-sizing: border-box;
+  border-radius: 2px;
+  vertical-align: bottom;
+  margin-right: 5px;
+}
+
+.form__checking:focus+.form__checkpoint {
+  border: 1px solid var(--color-lightorange);
+  box-shadow: 0 0 10px var(--color-lightorange);
+}
+
+.form__checkpoint::before {
   display: block;
-  width: 14px;
-  height: 14px;
-  top: 2px;
-  left: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  content: "";
+  width: 12px;
+  height: 12px;
   background-image: url("../img/check.svg");
   background-repeat: no-repeat;
-  background-position: center;
-  border: 1px solid var(--color-lightgrey);
-  border-radius: 2px;
-  opacity: 1;
+  background-size: cover;
+  transition: transform 0.2s ease-in;
 }
 
-.form__check:active::after {
-  background-color: var(--color-black);
+.form__checking:checked+.form__checkpoint::before {
+  transform: translate(-50%, -50%) scale(1);
 }
-
-input[type="checkbox"i] {
-  background-color: none;
-  cursor: pointer;
-  appearance: auto;
-  box-sizing: border-box;
-  margin: 0;
-  padding: initial;
-  border: none;
-  opacity: 0;
-}
-
 
 /* icons */
 
